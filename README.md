@@ -2,8 +2,8 @@
 
 [![license](https://img.shields.io/github/license/ran-isenberg/whiskey-playground)](https://github.com/ran-isenberg/whiskey-playground/blob/main/LICENSE)
 ![PythonSupport](https://img.shields.io/static/v1?label=python&message=3.14&color=blue?style=flat-square&logo=python)
-[![CI](https://github.com/ran-isenberg/whiskey-playground/actions/workflows/ci.yml/badge.svg)](https://github.com/ran-isenberg/whiskey-playground/actions/workflows/ci.yml)
-[![docs](https://github.com/ran-isenberg/whiskey-playground/actions/workflows/docs.yml/badge.svg)](https://ran-isenberg.github.io/whiskey-playground/)
+[![release](https://github.com/ran-isenberg/whiskey-playground/actions/workflows/release.yml/badge.svg)](https://github.com/ran-isenberg/whiskey-playground/actions/workflows/release.yml)
+![version](https://img.shields.io/github/v/release/ran-isenberg/whiskey-playground)
 ![github-star-badge](https://img.shields.io/github/stars/ran-isenberg/whiskey-playground.svg?style=social)
 ![issues](https://img.shields.io/github/issues/ran-isenberg/whiskey-playground)
 
