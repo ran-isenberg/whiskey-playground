@@ -13,7 +13,7 @@ make dev       # uv sync, pre-commit hooks, npm ci for the UI
 make deploy    # build agent + chat Lambda (ARM64 wheels) + UI, cdk deploy, then kb-sync
 ```
 
-To see traces in CloudWatch GenAI Observability, run `make observability` once per account and region (it turns on CloudWatch Transaction Search, an account-wide setting outside the stack).
+To see traces in CloudWatch GenAI Observability, run `make observability` once per account and region (it turns on CloudWatch Transaction Search, an account-wide setting outside the stack). It takes about 10 minutes to go from `PENDING` to `ACTIVE`, and the stack's trace delivery can't be created before that, so `make deploy` checks first and stops with a message if it isn't active yet.
 
 `make deploy` writes the stack outputs to `cdk-outputs.json`: `UiUrl` (the CloudFront site), `ApiUrl`, `AgentRuntimeArn`, `KnowledgeBaseId` and more.
 

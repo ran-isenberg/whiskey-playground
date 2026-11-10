@@ -137,7 +137,7 @@ The judge is Claude on Bedrock through a small boto3 adapter ([tests/e2e/metrics
 
 ## Observability
 
-The agent exports OpenTelemetry traces with the AWS Distro for OpenTelemetry, and Strands emits spans for every model call and tool call. They show up in **CloudWatch → GenAI Observability → Bedrock AgentCore** (sessions, traces, latency, token usage). Turn on CloudWatch Transaction Search once per account and region with `make observability`, then deploy. The agent also writes one JSON log line per turn: input, retrieved ids, raw picks, dropped ids and why, tool calls and latency.
+The agent exports OpenTelemetry traces with the AWS Distro for OpenTelemetry, and Strands emits spans for every model call and tool call. They show up in **CloudWatch → GenAI Observability → Bedrock AgentCore** (sessions, traces, latency, token usage). Turn on CloudWatch Transaction Search once per account and region with `make observability`, wait about 10 minutes for it to become `ACTIVE`, then deploy (`make deploy` checks this first). The agent also writes one JSON log line per turn: input, retrieved ids, raw picks, dropped ids and why, tool calls and latency.
 
 ## Commands
 

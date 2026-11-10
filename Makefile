@@ -46,10 +46,12 @@ synth: build
 	uv run cdk synth --quiet
 
 deploy: build
+	uv run scripts/enable_observability.py --check
 	uv run cdk deploy $(STACK) --require-approval never --outputs-file $(OUTPUTS)
 	$(MAKE) kb-sync
 
 deploy-agent: build-agent build-chat
+	uv run scripts/enable_observability.py --check
 	uv run cdk deploy $(STACK) --require-approval never --outputs-file $(OUTPUTS)
 
 kb-sync:
