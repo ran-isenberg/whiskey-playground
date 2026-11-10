@@ -7,7 +7,7 @@ STACK := WhiskeyAgentStack
 OUTPUTS := cdk-outputs.json
 PIP_LINUX := --python-platform aarch64-manylinux2014 --python-version 3.14 --only-binary=:all: --quiet
 
-.PHONY: dev format format-fix lint pre-commit build-agent build-chat build-ui build deploy deploy-agent kb-sync chat ui-dev ui-fixtures test e2e destroy clean-logs synth clean
+.PHONY: dev format format-fix lint pre-commit build-agent build-chat build-ui build deploy deploy-agent kb-sync chat ui-dev ui-fixtures test e2e destroy clean-logs synth clean observability
 
 dev:
 	uv sync
@@ -73,6 +73,9 @@ e2e:
 destroy:
 	uv run cdk destroy $(STACK) --force
 	$(MAKE) clean-logs
+
+observability:
+	uv run scripts/enable_observability.py
 
 clean-logs:
 	uv run scripts/clean_logs.py

@@ -88,19 +88,26 @@ Errors always use `{ "error": { "code", "message" } }` with `INVALID_REQUEST` (4
 ├── cdk/whiskey/              # one stack: KB, agent runtime, chat API, UI hosting, secure_bucket helper
 ├── agent/                    # AgentCore Runtime code (built into build/agent with ARM64 wheels)
 │   ├── main.py               # BedrockAgentCoreApp entrypoint, sessions, warm-up, error mapping
+│   ├── observability.py      # starts ADOT (OpenTelemetry) for AgentCore Observability
 │   ├── sommelier.py          # builds the agent from its modes, runs a turn, logs one JSON line per turn
 │   ├── contract.py           # ChatResponse - the API contract
 │   ├── answer.py             # AgentAnswer - what the LLM returns
 │   ├── prompts/base.md       # persona, safety, mode routing
 │   └── recommend/            # MODE 1: search_inventory tool, check_and_fill, prompt + rubric
 ├── service/chat/             # chat Lambda (Powertools, Pydantic models)
-├── scripts/                  # kb_sync, chat_cli (demo fallback), clean_logs
+├── scripts/                  # kb_sync, chat_cli (demo fallback), clean_logs, enable_observability
 ├── kb/                       # the inventory
 ├── ui/                       # React + Vite + Tailwind
 └── tests/
     ├── unit/                 # checks, filters, kb-sync, handler, rollback - no AWS
-    └── e2e/                  # deepeval golden prompts against the deployed API
+    └── e2e/                  # deepeval golden set (golden.yaml, metrics.py) against the deployed API
 ```
+
+## Observability
+
+- **Traces:** the agent starts the AWS Distro for OpenTelemetry (ADOT) in-process (`agent/observability.py`) before boto3 and Strands load; AgentCore Runtime supplies the exporter settings, and Strands emits GenAI spans for each model call and tool call. Runtime tracing is enabled in CDK. Spans land in CloudWatch through Transaction Search (`make observability`, once per account) and appear under **CloudWatch → GenAI Observability → Bedrock AgentCore**.
+- **Turn logs:** one JSON line per turn in the runtime log group: input, retrieved ids, raw picks and scores, dropped ids and reasons, tool calls, latency.
+- **Lambda logs:** Powertools structured logs with `session_id` as the correlation id.
 
 ## Security
 

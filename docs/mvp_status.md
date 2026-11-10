@@ -31,7 +31,8 @@ The project follows a 4-hour hackathon plan (requirements spec §9) split into t
 === "Ops"
 
     - One stack, `make deploy` / `make destroy`; agent-only redeploys for prompt or model changes; `make kb-sync` for inventory changes.
-    - One JSON log line per agent turn: input, retrieved ids, raw picks, dropped ids and reasons, tool calls, latency.
+    - AgentCore Observability: OpenTelemetry traces via ADOT, plus one JSON log line per agent turn (input, retrieved ids, raw picks, dropped ids and reasons, tool calls, latency).
+    - deepeval golden set (`make e2e`) against the deployed API.
 
 ## Known gaps and deviations
 

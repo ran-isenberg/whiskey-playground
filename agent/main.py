@@ -7,6 +7,11 @@ import sys
 # Make sibling modules importable regardless of the runtime's working directory.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+# Must run before boto3/strands are imported so their instrumentors patch them (AgentCore Observability).
+import observability  # noqa: E402
+
+observability.setup()
+
 from bedrock_agentcore.runtime import BedrockAgentCoreApp  # noqa: E402
 from strands.types.exceptions import ModelThrottledException  # noqa: E402
 

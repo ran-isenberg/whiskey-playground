@@ -13,6 +13,8 @@ make dev       # uv sync, pre-commit hooks, npm ci for the UI
 make deploy    # build agent + chat Lambda (ARM64 wheels) + UI, cdk deploy, then kb-sync
 ```
 
+To see traces in CloudWatch GenAI Observability, run `make observability` once per account and region (it turns on CloudWatch Transaction Search, an account-wide setting outside the stack).
+
 `make deploy` writes the stack outputs to `cdk-outputs.json`: `UiUrl` (the CloudFront site), `ApiUrl`, `AgentRuntimeArn`, `KnowledgeBaseId` and more.
 
 ## Chat with it
@@ -47,7 +49,8 @@ Try the demo script: a chip prompt → 3 cards; *"something cheaper"* → re-ran
 | `make chat` | Terminal chat against the runtime |
 | `make ui-dev` / `make ui-fixtures` | Local UI against the API / against fixtures |
 | `make test` | Unit tests (no AWS) |
-| `make e2e` | deepeval golden prompts against the deployed API |
+| `make e2e` | deepeval golden set against the deployed API |
+| `make observability` | One-time: enable CloudWatch Transaction Search (AgentCore Observability) |
 | `make format` / `make format-fix` / `make lint` | ruff check --fix / ruff format / both |
 | `make pre-commit` | Run all pre-commit hooks |
 | `make destroy` | `cdk destroy`, then delete leftover log groups |

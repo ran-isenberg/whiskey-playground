@@ -17,13 +17,15 @@ It is a hackathon proof of concept built to answer one question: **what does a s
 | API | API Gateway REST + Python Lambda ([Powertools](https://docs.powertools.aws.dev/lambda/python/)), throttled, contract-validated with Pydantic |
 | UI | React + Vite + Tailwind, private S3 bucket behind CloudFront (OAC) |
 | IaC | AWS CDK (Python), one stack, one-command deploy and destroy |
-| Tests | pytest unit tests + [deepeval](https://github.com/confident-ai/deepeval) e2e golden prompts with LLM-judged quality metrics |
+| Tests | pytest unit tests + a [deepeval](https://github.com/confident-ai/deepeval) e2e **golden set** with deterministic and LLM-judged metrics ([Testing](testing.md)) |
+| Observability | AgentCore Observability: OpenTelemetry traces via ADOT, CloudWatch Transaction Search |
 
 ## Key design decisions
 
 - **The LLM never writes bottle details.** It returns only ids, scores, reasons and a serving suggestion. Code validates every id against the inventory, drops out-of-stock and duplicates, clamps and re-sorts scores, and fills the cards from `inventory.json`. Hallucinated bottles cannot reach the UI.
 - **Guardrails in code, not only in the prompt.** The in-stock filter is always on in retrieval, the 3-match cap and score threshold are enforced server-side, and every drop is logged.
 - **Change behavior without touching infra.** Prompts live in files, and model, threshold and N are runtime environment variables - one agent redeploy. Inventory changes need only `make kb-sync`.
+- **Trusted with a golden set.** A fixed set of golden prompts runs against the deployed API with deepeval: contract invariants must hold on every prompt, per-prompt expectations must pass 80% of the time, and an LLM judge scores whether explanations are specific and refusals are safe.
 - **Built to split.** Recommend and order are separate modes (prompts, tools, code modules) in one agent today, structured so they can become two agents behind an orchestrator without changing the response contract.
 
 Continue with the [Architecture](architecture.md) or jump to [Getting Started](getting_started.md).

@@ -37,6 +37,7 @@ class AgentRuntime(Construct):
             'INVENTORY_KEY': INVENTORY_KEY,
             'GATEWAY_URL': '',
             'AWS_REGION': Aws.REGION,
+            'OBSERVABILITY_ENABLED': 'true',
         }
 
         self.runtime = agentcore.Runtime(
@@ -50,6 +51,7 @@ class AgentRuntime(Construct):
                 entrypoint=['main.py'],
             ),
             environment_variables=env,
+            tracing_enabled=True,  # AgentCore Observability: deliver runtime traces (needs Transaction Search)
         )
 
         role = self.runtime.role

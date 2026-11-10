@@ -16,6 +16,7 @@ agent = [
     "boto3>=1.43",
     "pydantic>=2.14",
     "pydantic-settings>=2.16",
+    "aws-opentelemetry-distro==0.22.0",
 ]
 service = [
     "aws-lambda-powertools==3.40.0",

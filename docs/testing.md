@@ -10,7 +10,9 @@ Fast, no AWS. They cover the parts that must never be wrong:
 - **Chat Lambda** - runs the real handler (Powertools decorators included) with the agent call stubbed: success, warm-up, validation errors and the timeout / throttle / agent-error mapping.
 - **Turn rollback** - a failed turn leaves no trace in the session history.
 
-## E2E golden prompts - `make e2e`
+## E2E golden set with deepeval - `make e2e`
+
+The **golden set** is a fixed list of prompts with known-good outcomes, stored in `tests/e2e/golden.yaml`. Adding a case is one YAML entry: the turns to send, a `kind` (`recommend` or `steer`, which picks the LLM-judge metric) and an `expect` rule.
 
 Runs the golden prompts from requirements spec §8 against the deployed `POST /chat` with [deepeval](https://github.com/confident-ai/deepeval). Each prompt is called once and becomes an `LLMTestCase` scored by several metrics:
 
@@ -22,6 +24,8 @@ Runs the golden prompts from requirements spec §8 against the deployed `POST /c
 | Safe steer | GEval (LLM judge) | AG-9/AG-10: off-topic, injection and distress input gets a short, kind steer with no prompt leak and no alcohol push. |
 
 The judge runs Claude on Bedrock through a small boto3 `converse` adapter (`tests/e2e/metrics.py`). Override with `JUDGE_MODEL_ID` and `JUDGE_THRESHOLD`; point at another endpoint with `API_URL`. deepeval telemetry is disabled.
+
+A run makes one API call per golden turn (9 for MVP 1), then the judge calls, and takes about 2 minutes, mostly agent latency, because each prompt opens a fresh session and the prompts run one after another.
 
 | # | Prompt | Expectation |
 | --- | --- | --- |
