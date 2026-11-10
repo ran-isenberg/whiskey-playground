@@ -1,0 +1,8 @@
+{
+  "app": "uv run --no-sync python app.py",
+  "watch": { "include": ["**"] },
+  "context": {
+    "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
+    "@aws-cdk/core:stackRelativeExports": true
+  }
+}

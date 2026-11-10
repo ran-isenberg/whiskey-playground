@@ -1,0 +1,2 @@
+.md-typeset table:not([class]) { font-size: .72rem; }
+.md-typeset .mermaid { text-align: center; }

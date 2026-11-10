@@ -1,0 +1,15 @@
+.venv/
+build/
+cdk.out/
+cdk-outputs.json
+ui/node_modules/
+ui/dist/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.deepeval/
+site/
+.DS_Store
+# Internal specs: kept local, not published
+docs/requirements-spec.md
+docs/design-spec.md

@@ -1,0 +1,123 @@
+[project]
+name = "whiskey-sommelier"
+version = "0.1.0"
+description = "Whiskey Sommelier Agent on AgentCore Runtime (hackathon POC)"
+requires-python = ">=3.14"
+dependencies = []
+
+[dependency-groups]
+cdk = [
+    "aws-cdk-lib==2.275.0",
+    "constructs>=10.4",
+]
+agent = [
+    "strands-agents==1.64.0",
+    "bedrock-agentcore==1.26.0",
+    "boto3>=1.43",
+    "pydantic>=2.14",
+    "pydantic-settings>=2.16",
+]
+service = [
+    "aws-lambda-powertools==3.40.0",
+    "pydantic>=2.14",
+    "boto3>=1.43",
+]
+dev = [
+    "pytest>=8",
+    "pyyaml>=6",
+    "requests>=2.32",
+    "boto3>=1.43",
+    "rich>=13",
+    "ruff",
+    "pre-commit",
+]
+docs = [
+    "mkdocs==1.6.1",
+    "mkdocs-material==9.8.1",
+    "pymdown-extensions==13.0",
+]
+e2e = [
+    "deepeval==4.3.3",
+    "requests>=2.32",
+    "pyyaml>=6",
+]
+
+[tool.uv]
+default-groups = ["cdk", "agent", "service", "dev", "e2e"]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = [".", "agent"]
+testpaths = ["tests/unit"]
+filterwarnings = [
+    "ignore::DeprecationWarning:deepeval.*",
+    "ignore::SyntaxWarning",
+]
+
+[tool.ruff]
+# Same config as aws-lambda-mcp-cookbook.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "cdk.out",
+    ".vscode",
+    ".pytest_cache",
+    ".build",
+    ".mypy_cache",
+    ".github",
+]
+# Ruff 0.17 also formats code blocks in Markdown; keep our specs untouched.
+extend-exclude = ["*.md"]
+
+# First-party module roots (agent, lambda and scripts import siblings flat).
+src = [".", "agent", "service/chat", "scripts"]
+
+# Same as Black.
+line-length = 150
+indent-width = 4
+
+# Assume Python 3.14
+target-version = "py314"
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+ignore = ["E203", "E266", "E501", "W191"]
+
+[tool.ruff.format]
+quote-style = "single"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+[tool.ruff.lint.isort]
+known-third-party = ["pydantic", "aws_lambda_powertools"]

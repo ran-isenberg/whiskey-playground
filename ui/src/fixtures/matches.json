@@ -1,0 +1,98 @@
+{
+  "session_id": "fixture",
+  "message": "A rainy Sunday and a good book call for something slow and warming. Here is what I'd pour.",
+  "matches": [
+    {
+      "rank": 1,
+      "id": "lagavulin-16",
+      "match_score": 92,
+      "why": "You described a slow, rainy day indoors. Lagavulin's deep peat smoke and dried-fruit sweetness are made for long, quiet sipping, and its fireside character matches the cozy mood of a book on a grey afternoon.",
+      "serving": "Neat, with a few drops of water after the first sip.",
+      "whiskey": {
+        "name": "Lagavulin 16 Year Old",
+        "distillery": "Lagavulin",
+        "country": "Scotland",
+        "region": "Islay",
+        "type": "Single Malt Scotch",
+        "age": 16,
+        "abv": 43.0,
+        "price_tier": "$$$",
+        "rating": 89,
+        "flavor_profile": [
+          "smoky",
+          "peaty",
+          "rich",
+          "sweet",
+          "maritime"
+        ],
+        "tasting_notes": {
+          "nose": "Thick peat smoke, iodine, seaweed and dried fruit.",
+          "palate": "Rich and oily: smoke, toffee, sherry sweetness and sea salt.",
+          "finish": "Very long, smoky and warming with a hint of oak."
+        }
+      }
+    },
+    {
+      "rank": 2,
+      "id": "talisker-10",
+      "match_score": 84,
+      "why": "You love smoky stuff, and Talisker brings it with a peppery, sea-spray edge, like rain against the window. It's a little brighter than Lagavulin, so it keeps you awake for one more chapter.",
+      "serving": "Neat, or with one small ice cube.",
+      "whiskey": {
+        "name": "Talisker 10 Year Old",
+        "distillery": "Talisker",
+        "country": "Scotland",
+        "region": "Islands",
+        "type": "Single Malt Scotch",
+        "age": 10,
+        "abv": 45.8,
+        "price_tier": "$$",
+        "rating": 86,
+        "flavor_profile": [
+          "peppery",
+          "smoky",
+          "maritime",
+          "salty",
+          "bold"
+        ],
+        "tasting_notes": {
+          "nose": "Sea salt, smoke, citrus and pepper.",
+          "palate": "Dried fruit, smoke, peppery heat.",
+          "finish": "Long, warming, peppery."
+        }
+      }
+    },
+    {
+      "rank": 3,
+      "id": "highland-park-12",
+      "match_score": 71,
+      "why": "If you want the smoke softer for a long read, Highland Park's heather-honey sweetness wraps the peat in something gentle. It suits a calm, rainy afternoon more than a stormy one.",
+      "serving": "Neat in a tulip glass.",
+      "whiskey": {
+        "name": "Highland Park 12 Year Old Viking Honour",
+        "distillery": "Highland Park",
+        "country": "Scotland",
+        "region": "Islands",
+        "type": "Single Malt Scotch",
+        "age": 12,
+        "abv": 40.0,
+        "price_tier": "$$",
+        "rating": 84,
+        "flavor_profile": [
+          "heather",
+          "honey",
+          "light smoke",
+          "balanced",
+          "sherry"
+        ],
+        "tasting_notes": {
+          "nose": "Heather honey, gentle smoke.",
+          "palate": "Sweet honey, soft smoke, citrus.",
+          "finish": "Medium, smoky and dry."
+        }
+      }
+    }
+  ],
+  "pending_order": null,
+  "order": null
+}

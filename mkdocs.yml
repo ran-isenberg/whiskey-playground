@@ -1,0 +1,81 @@
+site_name: Whiskey Sommelier Agent
+site_description: An AI whiskey sommelier on Amazon Bedrock AgentCore Runtime - Strands agent, Bedrock Knowledge Base on S3 Vectors, serverless API and a React chat UI, all in CDK Python
+site_author: Ran Isenberg
+site_url: https://ran-isenberg.github.io/whiskey-playground/
+repo_url: https://github.com/ran-isenberg/whiskey-playground
+repo_name: ran-isenberg/whiskey-playground
+edit_uri: edit/main/docs
+
+nav:
+  - Homepage: index.md
+  - Architecture: architecture.md
+  - MVP Status: mvp_status.md
+  - Getting Started: getting_started.md
+  - Testing: testing.md
+
+theme:
+  name: material
+  font:
+    text: Ubuntu
+  palette:
+    - scheme: default
+      primary: amber
+      accent: deep orange
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: amber
+      accent: deep orange
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.instant
+    - navigation.indexes
+    - navigation.tracking
+    - content.code.annotate
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - admonition
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      linenums: false
+  - pymdownx.details
+  - meta
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - attr_list
+  - tables
+  - pymdownx.emoji
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+copyright: Copyright &copy; 2026 Ran Isenberg
+
+plugins:
+  - search
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/ran-isenberg/whiskey-playground
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/ranbuilder/
+    - icon: fontawesome/solid/globe
+      link: https://www.ranthebuilder.cloud
